@@ -14,3 +14,15 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore Rubymine config
+.DS_Store
+.ruby-version
+.idea
+coverage
+cscope.out
+tags
+.idea*
+
+
+
