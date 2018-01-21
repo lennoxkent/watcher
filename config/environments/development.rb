@@ -29,4 +29,11 @@ Watcher::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Concurrency required for Dashing (Dashboard)
+  config.allow_concurrency = true
+
+
+  # Reduce Console output
+  config.log_level = :warn
 end
