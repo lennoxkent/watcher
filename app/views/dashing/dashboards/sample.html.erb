@@ -4,27 +4,26 @@
 
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="welcome" data-view="Text" data-title="Hello" data-text="This is your shiny new dashboard." data-moreinfo="Protip: You can drag the widgets around!"></div>
-    </li>
-
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="synergy" data-view="Meter" data-title="Synergy" data-min="0" data-max="100"></div>
+      <div data-id="apple_open_close" data-view ="LineChart" data-title="Apple" data-moreinfo=""></div>
+    </li>
+    </li> <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="apple_volume" data-view ="LineChart" data-title="Apple" data-moreinfo=""></div>
     </li>
 
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
-      <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="google_open_close" data-view ="LineChart" data-title="Google" data-moreinfo=""></div>
+    </li>
+    </li> <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="google_volume" data-view ="LineChart" data-title="Google" data-moreinfo=""></div>
     </li>
 
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="valuation" data-view="Number" data-title="Current Valuation" data-moreinfo="In billions" data-prefix="$"></div>
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="altaba_open_close" data-view ="LineChart" data-title="Altaba" data-moreinfo=""></div>
     </li>
-
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="linechart" data-view ="LineChart" data-title="Line Chart" data-moreinfo=""></div>
+    </li> <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="altaba_volume" data-view ="LineChart" data-title="Altaba" data-moreinfo=""></div>
     </li>
-
 
   </ul>
-  <center><div style="font-size: 12px">Try this: curl -X PUT 'http://<%= request.host %>:<%= request.port %>/dashing/widgets/welcome' -d "widget[text]=Dashing is awesome"</div></center>
 </div>
