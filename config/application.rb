@@ -22,5 +22,20 @@ module Watcher
 
     # required for secure connection (https)
     #config.force_ssl = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
+    # Hassle free and optional ENV population
+    # Safe because config/local_env.yml is added to .gitignore
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      if File.exist?(env_file)
+        YAML.load(File.open(env_file)).each do |key, value|
+          overridden = ENV[key.to_s]
+          ENV[key.to_s] = value unless overridden
+        end
+      end
+    end
   end
 end

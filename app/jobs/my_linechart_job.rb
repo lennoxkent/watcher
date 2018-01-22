@@ -2,18 +2,19 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-SOURCE_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo'
+
+SOURCE_URI = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=#{ENV["ALPHAVANTAGE_API_KEY"]}"
 
 labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
-Dashing.scheduler.every '2s' do
+Dashing.scheduler.every '5s' do
 
-  url = URI.parse(SOURCE_URL)
-  http = Net::HTTP.new(url.host, url.port)
-  http.use_ssl = (url.scheme == 'https')
+  uri = URI.parse(SOURCE_URI)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = (uri.scheme == 'https')
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-  response = http.request(Net::HTTP::Get.new(url.request_uri))
-
+  response = http.request(Net::HTTP::Get.new(uri.request_uri))
+  response_body = JSON.parse(response.body)
 
   data = [
       {
