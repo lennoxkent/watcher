@@ -3,12 +3,12 @@ require 'uri'
 require 'json'
 
 
-Dashing.scheduler.every '5s' do
+Dashing.scheduler.every '5s', :first_in => 0.4 do
 
   interval_min = 5
   plot_range_hr = 6 # Range that plot must show, ie: 6hrs of datapoints
   nasdaq_symbol = 'GOOGL'
-  source_uri = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=#{ nasdaq_symbol}&interval=#{ interval_min}min&apikey=#{ENV["ALPHAVANTAGE_API_KEY"]}"
+  source_uri = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=#{nasdaq_symbol}&interval=#{interval_min}min&apikey=#{ENV["ALPHAVANTAGE_API_KEY"]}"
 
 
   uri = URI.parse(source_uri)

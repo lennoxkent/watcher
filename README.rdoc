@@ -4,5 +4,4 @@
 * Plot time interval is 5min (10 min is not an option)
 * Updated every 5 seconds, depending on internet connection
 * Yahoo was bought out by Verizon, and is now called Altaba
-
-
+* NYSE date ranges from 9:30 to 16:00 due to business hours. So 6 hours past data is not always availible, or we get a step between days. Keeping it to last 72 points rather.
