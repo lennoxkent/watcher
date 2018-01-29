@@ -1,6 +1,8 @@
 == README
 
 ## Notes
+* localhost:3000/dashing/dashboards
+* For an example of the output see example.png
 * Plot time interval is 5min (10 min is not an option)
 * Updated every 5 seconds, depending on internet connection
 * Yahoo was bought out by Verizon, and is now called Altaba
