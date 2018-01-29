@@ -15,15 +15,22 @@ Dashing.scheduler.every '5s', :first_in => 0.4 do
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = (uri.scheme == 'https')
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-  response = http.request(Net::HTTP::Get.new(uri.request_uri))
+
   response_body = JSON.parse(response.body)
+
+  begin
+    response = http.request(Net::HTTP::Get.new(uri.request_uri))
+  rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
+      Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError => e
+    log("JOB UNABLE TO GET SITE WITH SYMBOL: #{nasdaq_symbol}, error #{e}")
+  end
 
   # Number of points, based off dev-school requirement
   n = (  plot_range_hr*60 )/ interval_min
 
   # Get time series, convert to array, sort (0=oldest), keep first n
   ts = response_body["Time Series (#{ interval_min}min)"].to_a.sort
-  ts = ts[(ts.length-n)...ts.length] # last n points
+  ts = ts[(ts.length-n)...ts.length] if ts.length > n # last n points
 
   ts_times = ts.map{ |x| x[0]}
   ts_open = ts.map{ |x| x[1]['1. open'] }

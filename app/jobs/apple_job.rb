@@ -23,7 +23,7 @@ Dashing.scheduler.every '5s', :first_in => 0.4 do
 
   # Get time series, convert to array, sort (0=oldest), keep first n
   ts = response_body["Time Series (#{ interval_min}min)"].to_a.sort
-  ts = ts[(ts.length-n)...ts.length] # last n points
+  ts = ts[(ts.length-n)...ts.length] if ts.length > n # last n points
 
   ts_times = ts.map{ |x| x[0]}
   ts_open = ts.map{ |x| x[1]['1. open'] }
